@@ -1,0 +1,10 @@
+node_modules
+npm-debug.log
+<<<<<<< HEAD
+<<<<<<< HEAD
+*.swp
+=======
+>>>>>>> 4bc9192... From jade to swig template engine.
+=======
+*.swp
+>>>>>>> 90cc012... Added mongoose and AngularJS to load and save documents. Very basic.

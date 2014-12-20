@@ -1,0 +1,49 @@
+{% extends 'layout.html' %}
+
+{% block content %}
+
+<h3>Nueva actividad</h3>
+  
+<div class="panel panel-default">
+  <div class="panel-body">
+    
+    <form class="form-horizontal" action="/nueva-actividad" method="post">
+
+    <div class="col-md-3">
+
+      <div class="form-group">
+        <label for="inputName" class="control-label">Nombre de la actividad</label>
+        <input type="text" class="form-control" id="inputName" name="name" placeholder="Nombre actividad">
+
+        <label for="inputDay" class="control-label">Día de la actividad</label>
+        <input type="text" class="form-control" id="inputDay" name="day" placeholder="Lunes, Martes...">
+      
+        <label for="inputNumber" class="control-label">Número del día de la actividad</label>
+        <input type="number" class="form-control" id="inputNumber" name="daynumber" placeholder="1, 2, 3...">
+
+        <label for="inputMonth" class="control-label">Mes de la actividad</label>
+        <input type="text" class="form-control" id="inputMonth" name="month" placeholder="Enero, Febrero...">
+
+        <label for="inputHour" class="control-label">Hora de la actividad</label>
+        <input type="text" class="form-control" id="inputHour" name="hour" placeholder="8:00">
+
+        <label for="inputPlace" class="control-label">Lugar</label>
+        <input type="text" class="form-control" id="inputPlace" name="place" placeholder="Local">
+      </div>
+
+    </div>
+
+    <div class="col-md-7">
+        <label for="textArea" class="control-label">Comentario</label>
+        <textarea class="form-control" id="textArea" name="text"></textarea>
+    </div>
+
+    <div class="col-md-offset-1 col-md-11">
+      <button type="submit" class="btn btn-primary">Registrar</button>
+    </div>
+   </form>
+
+   </div>
+</div>
+
+{% endblock %}

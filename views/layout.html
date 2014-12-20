@@ -1,0 +1,55 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Agenda</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" type="text/css" href="/css/bootstrap.min.css">
+  <link rel="stylesheet" type="text/css" href="/css/bootstrap-theme.min.css">
+
+  {% block scripts %}
+  <script src="/js/jquery-2.1.1.min.js"></script>
+  <script src="/js/bootstrap.min.js"></script>
+  <script src="/js/angular.min.js"></script>
+  <script src="/js/my-angular-app.js"></script>
+  {% endblock %}
+
+  </head>
+<body>
+
+<div class="container">
+  <nav role="navigation" class="navbar navbar-inverse">
+  <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+      <button type="button" data-target="#navbarCollapse" data-toggle="collapse" class="navbar-toggle">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="/">Inicio</a>
+    </div>
+    <!-- Collection of nav links, forms, and other content for toggling -->
+    <div id="navbarCollapse" class="collapse navbar-collapse">
+      {% if user == undefined %}
+      <ul class="nav navbar-nav">
+        <li><a href="/register">Registrarse</a></li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+          <li><a href="/login">Log in</a></li>
+      </ul>
+      {% else %}
+      <ul class="nav navbar-nav">
+          <li><a href="/nueva-actividad">Nueva actividad</a></li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li><a href="/logout">Log out</a></li>
+      </ul>
+     {% endif %}
+    </div>
+  </nav>
+  {% block content %}{% endblock %}
+</div>
+
+</body>
+</html>

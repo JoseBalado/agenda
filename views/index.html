@@ -1,0 +1,58 @@
+{% extends 'layout.html' %}
+
+{% block content %}
+
+{# Angular #}
+
+{# {% raw %} Forces the content to not be auto-escaped. All swig instructions will be ignored and the content will be rendered exactly as it was given.  #}
+
+{% raw %}
+
+<div ng-app="MyApp">
+  <div ng-controller="MyCtrl">
+
+    <div class="row">
+      <div class="col-md-3">
+      
+          <h3>Actividades</h3> 
+          <ul class="list-group">
+            <li class="list-group-item" ng-repeat="actividad in actividades">
+            <a>{{ actividad.nombre }}</a>
+            </li>
+          </ul>
+
+      </div> <!-- end of class="col-md-3" -->
+
+      <div class="col-md-9">
+        <h3>Detalles</h3>
+        <div class="panel panel-default">
+          <div class="panel-body">
+            <p>{{ actividades[0]['texto'] }}</p>
+          </div>
+        </div>
+      </div> <!-- end of class="col-md-4" -->
+
+    </div> <!-- end of class="row" -->
+
+  </div> <!-- end of ng-controller -->
+</div>   <!-- end of ng-app -->
+
+{% endraw %}
+
+{# End of the Angular section #}
+
+
+  {% if user %}
+    <div class="panel panel-default">
+      <div class="panel-body">
+        <p class="text-success">You are currently logged in as {{ user.username }}</p>
+      </div>
+    </div>
+  {% else %}
+    <div class="panel panel-default">
+      <div class="panel-body">
+        <p class="text-warning">You are currently not logged in. Please login or register...</p>
+      </div>
+  </div>
+  {% endif %}
+{% endblock %}
