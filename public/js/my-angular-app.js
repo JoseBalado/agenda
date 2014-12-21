@@ -12,4 +12,15 @@ app.controller("MyCtrl", function($scope, $http) {
     ]
   });
 
+  $scope.show = function(id) {
+    $scope.actividades.forEach(function(actividad, index, array) {
+        if ( actividad['_id'] == id) {
+        console.log('id=' + id + ', actividad: ' + actividad['_id'] +', index: ' + index + ', array: ' + array);
+        $scope.acto = actividad;
+        }
+
+    });
+    console.log('Show clickeado: ' + $scope.acto);
+  };
+
 });

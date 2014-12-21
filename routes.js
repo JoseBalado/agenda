@@ -63,11 +63,10 @@ router.post('/nueva-actividad', function(req, res) {
     texto: req.body.text,
     genteAnotada: []
   });
-  console.log(acto.nombre);
   
   acto.save(function (err, acto) {
     if (err) return console.error(err);
-    console.log('Actividad salvada correctamente');
+    console.log('Actividad "' + acto.nombre + '" salvada correctamente' );
   });
 
 

@@ -54,6 +54,15 @@ mongoose.connect('mongodb://localhost/agenda', function(err) {
   }
 });
 
+// Catch when the Node process is ending and close the Mongoose connection
+process.on('SIGINT', function() {
+  mongoose.connection.close(function () {
+    console.log('Mongoose disconnected through app termination');
+    process.exit(0);
+  });
+});
+
+
 // Register routes
 app.use('/', require('./routes'));
 

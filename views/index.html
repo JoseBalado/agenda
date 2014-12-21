@@ -17,17 +17,23 @@
           <h3>Actividades</h3> 
           <ul class="list-group">
             <li class="list-group-item" ng-repeat="actividad in actividades">
-            <a>{{ actividad.nombre }}</a>
+            <a href="#" ng-click="show(actividad['_id'])">{{ actividad.nombre }}</a>
             </li>
           </ul>
 
       </div> <!-- end of class="col-md-3" -->
 
       <div class="col-md-9">
-        <h3>Detalles</h3>
+        <h3>Detalles de la actividad: {{ acto["nombre"] }}</h3>
         <div class="panel panel-default">
-          <div class="panel-body">
-            <p>{{ actividades[0]['texto'] }}</p>
+          <div class="panel-body" ng-show="acto">
+            <span> {{ acto["día"] }}</span>
+            <span> {{ acto["número"] }}</span>
+            <span> de {{ acto["mes"] }}</span>
+            <span> a las {{ acto["hora"] }}</span>
+            <div>Lugar: {{ acto["lugar"] }}</div>
+            <div>Comentario: {{ acto["texto"] }}</div>
+            <div ng-show='acto["genteAnotada"]'>Gente anotada: {{ acto["genteAnotada"] }}</div>
           </div>
         </div>
       </div> <!-- end of class="col-md-4" -->
