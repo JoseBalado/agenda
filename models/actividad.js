@@ -9,7 +9,7 @@ var ActividadSchema = new Schema({
     hora: String,
     lugar: String,
     texto: String,
-    genteAnotada: Array
+    genteAnotada: [String]
 });
 
 module.exports = mongoose.model('Actividad', ActividadSchema);

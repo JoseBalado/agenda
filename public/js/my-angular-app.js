@@ -3,24 +3,35 @@ var app = angular.module("MyApp", []);
 app.controller("MyCtrl", function($scope, $http) {
   $http.get("data/productData.json").success(function(data) {
     $scope.actividades = data;
-  }).
-  error(function(data, status, headers, config) {
-    $scope.actividades = [
-      {
+  }).error(function(data, status, headers, config) {
+    $scope.actividades = [{
       "nombre": "Error, no hay comunicación con el servidor"
-      }
-    ]
+      }]
   });
 
   $scope.show = function(id) {
     $scope.actividades.forEach(function(actividad, index, array) {
         if ( actividad['_id'] == id) {
-        console.log('id=' + id + ', actividad: ' + actividad['_id'] +', index: ' + index + ', array: ' + array);
-        $scope.acto = actividad;
+          $scope.acto = actividad;
         }
-
     });
-    console.log('Show clickeado: ' + $scope.acto);
   };
 
+  $scope.apuntarse = function(id) {
+    $http.get("/user").success(function(usuario) {
+      console.log(usuario + " te has apuntado a la actividad: " + id);
+      $scope.actividades.forEach(function(actividad, index, array) {
+        if ( actividad['_id'] == id) {
+         console.log( $scope.actividades[index].genteAnotada.push(usuario.username));
+        }
+      });
+    }).error(function(data, status, headers, config) {
+       console.log('Error, no hay comunicación con el servidor'); 
+    });
+  };
+
+  $scope.borrarse = function(id) {
+    console.log("Te has borrado de la actividad");
+  };
+  
 });

@@ -36,7 +36,13 @@
             <div ng-show='acto["genteAnotada"]'>Gente anotada: {{ acto["genteAnotada"] }}</div>
           </div>
         </div>
-      </div> <!-- end of class="col-md-4" -->
+
+        <div class="well" ng-show="acto">
+          <button type="button" class="btn btn-primary" ng-click="apuntarse(acto['_id'])">Apuntarse</button>
+          <button type="button" class="btn btn-danger" ng-click="borrarse(acto['_id'])">Borrarse</button>
+      </div>
+
+      </div> <!-- end of class="col-md-9" -->
 
     </div> <!-- end of class="row" -->
 

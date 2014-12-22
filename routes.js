@@ -73,4 +73,8 @@ router.post('/nueva-actividad', function(req, res) {
   res.redirect('/');
 });
 
+router.get('/user', function(req, res) {
+  res.json({ username: req.user.username});
+});
+
 module.exports = router;
