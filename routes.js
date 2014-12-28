@@ -11,7 +11,7 @@ router.get('/', function(req, res) {
 });
 
 // Trying to respond to an Ajax get request
-router.get('/data/productData.json', function(req, res) {
+router.get('/data', function(req, res) {
     var respuesta = Actividad.find(function (err, actos) {
       if (err) return console.error(err);
       res.json(actos);
@@ -73,8 +73,20 @@ router.post('/nueva-actividad', function(req, res) {
   res.redirect('/');
 });
 
+
+/* repuesta a XHR solo con usuario para Angular.js
 router.get('/user', function(req, res) {
   res.json({ username: req.user.username});
 });
+*/
+
+router.put('/addusertoactivity/:id', function(req, res) {
+  console.log(req.user.username);
+  console.log(req.params.id);
+  Actividad.update({_id: req.params.id, genteAnotada: {$nin: [req.user.username]}}, {$push: {genteAnotada: req.user.username}},
+    function() { res.end('true'); }
+  );
+});
+
 
 module.exports = router;
