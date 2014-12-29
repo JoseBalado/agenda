@@ -10,7 +10,7 @@ router.get('/', function(req, res) {
   res.render('index', { user: req.user });
 });
 
-// Trying to respond to an Ajax get request
+// Ajax response to info about all activities
 router.get('/data', function(req, res) {
     var respuesta = Actividad.find(function (err, actos) {
       if (err) return console.error(err);
@@ -18,7 +18,6 @@ router.get('/data', function(req, res) {
   })
 });
 
-// End of Ajax get request
 
 router.get('/register', function(req, res) {
   res.render('register', {});
@@ -80,7 +79,7 @@ router.get('/user', function(req, res) {
 });
 */
 
-router.put('/addusertoactivity/:id', function(req, res) {
+router.put('/user/addtoactivity/:id', function(req, res) {
   console.log(req.user.username);
   console.log(req.params.id);
   Actividad.update({_id: req.params.id, genteAnotada: {$nin: [req.user.username]}}, {$push: {genteAnotada: req.user.username}},
@@ -88,5 +87,13 @@ router.put('/addusertoactivity/:id', function(req, res) {
   );
 });
 
+
+router.put('/user/removefromactivity/:id', function(req, res) {
+  console.log(req.user.username);
+  console.log(req.params.id);
+  Actividad.update({_id: req.params.id, genteAnotada: {$in: [req.user.username]}}, {$pull: {genteAnotada: req.user.username}},
+    function() { res.end('true'); }
+  );
+});
 
 module.exports = router;

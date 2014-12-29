@@ -40,7 +40,7 @@ app.controller("MyCtrl", function($scope, $http) {
   */
 
   $scope.apuntarse = function(id) {
-    $http.put("/addusertoactivity/" + id)
+    $http.put("/user/addtoactivity/" + id)
       .success(function() {
         console.log('Te has apuntado a la actividad');
         fetchData(); // Load again the activities.
@@ -55,7 +55,15 @@ app.controller("MyCtrl", function($scope, $http) {
   };
 
   $scope.borrarse = function(id) {
-    console.log("Te has borrado de la actividad");
+    $http.put("/user/removefromactivity/" + id)
+      .success(function() {
+        console.log('Te has borrado de la actividad');
+        fetchData();
+        $scope.acto = [];
+      })
+      .error(function(data, status, headers, config) {
+        console.log('Error $http.put, status=' + status);
+      });
   };
   
 });
