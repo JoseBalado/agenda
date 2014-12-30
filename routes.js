@@ -20,7 +20,7 @@ router.get('/data', function(req, res) {
 
 
 router.get('/register', function(req, res) {
-  res.render('register', {});
+  res.render('register');
 });
 
 router.post('/register', function(req, res, next) {
@@ -48,7 +48,7 @@ router.get('/logout', function(req, res) {
 });
 
 router.get('/nueva-actividad', function(req, res) {
-  res.render('nueva-actividad');
+  res.render('nueva-actividad', { user: req.user });
 });
 
 router.post('/nueva-actividad', function(req, res) {
