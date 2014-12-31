@@ -2,13 +2,6 @@
 
 {% block content %}
 
-{# Angular #}
-
-{# {% raw %} Forces the content to not be auto-escaped. All swig instructions will be ignored and the content will be rendered exactly as it was given.  #}
-
-{% raw %}
-
-<div ng-app="MyApp">
   <div ng-controller="MyCtrl">
 
     <div class="row">
@@ -47,17 +40,14 @@
     </div> <!-- end of class="row" -->
 
   </div> <!-- end of ng-controller -->
-</div>   <!-- end of ng-app -->
 
-{% endraw %}
 
-{# End of the Angular section #}
 
 
   {% if user %}
     <div class="panel panel-default">
       <div class="panel-body">
-        <p class="text-success">Has iniciado sesión como {{ user.username }}</p>
+        <p class="text-success">Has iniciado sesión como <%= user.username %> </p>
       </div>
     </div>
   {% else %}

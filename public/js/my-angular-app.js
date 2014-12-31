@@ -16,6 +16,11 @@ app.controller("MyCtrl", function($scope, $http) {
   fetchData();
 
   $scope.show = function(id) {
+    // Activar y configurar la selección de "Eliminar actividad"
+    // en el panel
+    //$scope.eliminar = id; 
+
+    // Monstar la actividad
     $scope.actividades.forEach(function(actividad, index, array) {
         if ( actividad['_id'] == id) {
           $scope.acto = actividad;
