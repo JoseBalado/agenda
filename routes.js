@@ -47,6 +47,8 @@ router.get('/logout', function(req, res) {
   res.redirect('/');
 });
 
+
+// Crear nueva actividad
 router.get('/nueva-actividad', function(req, res) {
   res.render('nueva-actividad', { user: req.user });
 });
@@ -79,6 +81,7 @@ router.get('/user', function(req, res) {
 });
 */
 
+// Add user to activity
 router.put('/user/addtoactivity/:id', function(req, res) {
   console.log(req.user.username);
   console.log(req.params.id);
@@ -87,13 +90,24 @@ router.put('/user/addtoactivity/:id', function(req, res) {
   );
 });
 
-
+// Remove user to activity
 router.put('/user/removefromactivity/:id', function(req, res) {
   console.log(req.user.username);
   console.log(req.params.id);
   Actividad.update({_id: req.params.id, genteAnotada: {$in: [req.user.username]}}, {$pull: {genteAnotada: req.user.username}},
     function() { res.end('true'); }
   );
+});
+
+// Eliminar actividad
+router.delete('/activity/delete/:id', function(req, res) {
+  console.log(req.user.username);
+  console.log(req.params.id);
+  Actividad.remove({_id: req.params.id}, function (err) {
+    if (!err) { 
+      res.end('true'); 
+    }
+  });
 });
 
 module.exports = router;

@@ -18,7 +18,7 @@
 <body ng-app="MyApp">
 
 <div class="container">
-  <nav role="navigation" class="navbar navbar-inverse">
+  <nav ng-controller="NavCtrl" role="navigation" class="navbar navbar-inverse">
   <!-- Brand and toggle get grouped for better mobile display -->
     <div class="navbar-header">
       <button type="button" data-target="#navbarCollapse" data-toggle="collapse" class="navbar-toggle">
@@ -43,7 +43,7 @@
           <li><a href="/nueva-actividad">Nueva actividad</a></li>
       </ul>
       <ul class="nav navbar-nav">
-          <li><a href="/eliminar-actividad">Eliminar actividad</a></li>
+        <li><a href="#" ng-click="eliminar()">Eliminar actividad {{ eliminar_id }}</a></li>
       </ul>
       <ul class="nav navbar-nav">
           <li><a href="/editar-actividad">Editar actividad</a></li>
