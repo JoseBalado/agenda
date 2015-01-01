@@ -43,10 +43,10 @@
           <li><a href="/nueva-actividad">Nueva actividad</a></li>
       </ul>
       <ul class="nav navbar-nav">
-        <li><a href="#" ng-click="eliminar()">Eliminar actividad {{ eliminar_id }}</a></li>
+        <li><a href="/" ng-click="eliminar()">Eliminar actividad</a></li>
       </ul>
       <ul class="nav navbar-nav">
-          <li><a href="/editar-actividad">Editar actividad</a></li>
+        <li ng-model="id"><a ng-href="/editar-actividad/{{id}}">Editar actividad</a></li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
         <li><a href="/logout">Log out</a></li>

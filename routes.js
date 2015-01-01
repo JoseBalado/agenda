@@ -2,6 +2,7 @@ var passport = require('passport');
 var Account = require('./models/account');
 var router = require('express').Router();
 
+
 // Actividadad mongoose model
 var Actividad = require('./models/actividad');
 
@@ -19,6 +20,9 @@ router.get('/data', function(req, res) {
 });
 
 
+
+
+// Registrar usuario
 router.get('/register', function(req, res) {
   res.render('register');
 });
@@ -34,6 +38,7 @@ router.post('/register', function(req, res, next) {
   });
 });
 
+// login
 router.get('/login', function(req, res) {
   res.render('login', { user: req.user });
 });
@@ -42,10 +47,13 @@ router.post('/login', passport.authenticate('local'), function(req, res) {
   res.redirect('/');
 });
 
+// logout
 router.get('/logout', function(req, res) {
   req.logout();
   res.redirect('/');
 });
+
+
 
 
 // Crear nueva actividad
@@ -70,16 +78,11 @@ router.post('/nueva-actividad', function(req, res) {
     console.log('Actividad "' + acto.nombre + '" salvada correctamente' );
   });
 
-
   res.redirect('/');
 });
 
 
-/* repuesta a XHR solo con usuario para Angular.js
-router.get('/user', function(req, res) {
-  res.json({ username: req.user.username});
-});
-*/
+
 
 // Add user to activity
 router.put('/user/addtoactivity/:id', function(req, res) {
@@ -90,7 +93,7 @@ router.put('/user/addtoactivity/:id', function(req, res) {
   );
 });
 
-// Remove user to activity
+// Remove user from activity
 router.put('/user/removefromactivity/:id', function(req, res) {
   console.log(req.user.username);
   console.log(req.params.id);
@@ -99,15 +102,64 @@ router.put('/user/removefromactivity/:id', function(req, res) {
   );
 });
 
+
+
+
 // Eliminar actividad
 router.delete('/activity/delete/:id', function(req, res) {
   console.log(req.user.username);
   console.log(req.params.id);
   Actividad.remove({_id: req.params.id}, function (err) {
     if (!err) { 
-      res.end('true'); 
+      res.redirect('true'); 
     }
   });
+});
+
+// Editar actividad
+router.get('/editar-actividad/:id', function(req, res) {
+  console.log('Editar id = ' + req.params.id);
+  Actividad.findById(req.params.id, function(err, acto) {
+    if(err) {
+      console.log(err);
+    } else {
+      console.log(acto);
+      res.render('editar-actividad', { user: req.user, 
+        acto: {
+          id: req.params.id,
+          nombre: acto.nombre,
+          día: acto.día,
+          número: acto.número,
+          mes: acto.mes,
+          hora: acto.hora,
+          lugar: acto.lugar,
+          texto: acto.texto
+        }
+      })
+    }
+  });
+});
+
+router.post('/editar-actividad', function(req, res) {
+  console.log('post: /editar-actividad: ' + req.body.id);
+  Actividad.findByIdAndUpdate(req.body.id, {
+    nombre: req.body.name,
+    día: req.body.day,
+    número: req.body.daynumber,
+    mes: req.body.month,
+    hora: req.body.hour,
+    lugar: req.body.place,
+    texto: req.body.text
+  }, function(err) {
+    if(err) {
+      console.log(err);
+      res.redirect('/');
+    } else {
+      console.log('Objeto actualizado correctamente');
+    }
+  });
+  res.redirect('/');
+
 });
 
 module.exports = router;

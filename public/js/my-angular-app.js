@@ -1,7 +1,7 @@
 var app = angular.module("MyApp", []);
 
 // Compartir datos entre los controladores del panel actividad y del panel navegación
-app.factory('sharedId', function() {
+app.factory('sharedId', function($rootScope) {
   var _id = null;
 
   return {
@@ -10,6 +10,7 @@ app.factory('sharedId', function() {
     },
     set: function(id) {
       _id = id;
+      $rootScope.$broadcast("idUpdated");
     }
   };
 });
@@ -110,6 +111,26 @@ app.controller("NavCtrl", function($scope, $http, sharedId) {
         console.log('Error $http.delete, status = ' + status);
       });
   };
+
+
+    $scope.$on('idUpdated', function() {
+      $scope.id = sharedId.get();
+    });
+
+
+  /*
+  // Editar la actividad seleccionada
+  $scope.editar = function() {
+    var id = sharedId.get();
+    $http.put("/activity/edit/" + id)
+      .success(function() {
+        console.log('Se ha envidado el id de la actividad');
+      })
+      .error(function(data, status, headers, config) {
+        console.log('Error $http.put, status = ' + status);
+      });
+  };
+*/
 
 });
     
