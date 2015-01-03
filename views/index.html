@@ -30,7 +30,7 @@
           </div>
         </div>
 
-        <div class="well" ng-show="acto">
+        <div class="well" ng-show="acto.nombre && '<%=user.username%>'">
           <button type="button" class="btn btn-primary" ng-click="apuntarse(acto['_id'])">Apuntarse</button>
           <button type="button" class="btn btn-danger" ng-click="borrarse(acto['_id'])">Borrarse</button>
       </div>
