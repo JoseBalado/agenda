@@ -36,23 +36,25 @@
         <li><a href="/register">Registrarse</a></li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
-          <li><a href="/login">Log in</a></li>
+        <li><a href="/login">Log in</a></li>
       </ul>
       {% else %}
       <ul class="nav navbar-nav">
-          <li><a href="/nueva-actividad">Nueva actividad</a></li>
-      </ul>
-      <ul class="nav navbar-nav">
-        <li><a href="/" ng-click="eliminar()">Eliminar actividad</a></li>
-      </ul>
-      <ul class="nav navbar-nav">
-        <li ng-model="id"><a ng-href="/editar-actividad/{{id}}">Editar actividad</a></li>
+        <li class="dropdown">
+          <a href="#" data-toggle="dropdown" class="dropdown-toggle">Opciones <b class="caret"></b></a>
+          <ul class="dropdown-menu">
+            <li><a href="/nueva-actividad">Nueva actividad</a></li>
+            <li ng-model="id"><a ng-href="/editar-actividad/{{id}}">Editar actividad</a></li>
+            <li class="divider"></li>
+            <li><a href="/" ng-click="eliminar()">Eliminar actividad</a></li>
+          </ul>
+        </li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
         <li><a href="/logout">Log out</a></li>
       </ul>
      {% endif %}
-    </div>
+    </div> <!-- id="navbarCollapse" -->
   </nav>
   {% block content %}{% endblock %}
 </div>
