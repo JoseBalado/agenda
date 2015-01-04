@@ -48,21 +48,6 @@ app.controller("MyCtrl", function($scope, $http, sharedId) {
     });
   };
 
-  /* Apuntarse modificando el array en Angular
-  $scope.apuntarse = function(id) {
-    $http.get("/user").success(function(usuario) {
-      console.log(usuario + " te has apuntado a la actividad: " + id);
-      $scope.actividades.forEach(function(actividad, index, array) {
-        if (actividad['_id'] == id) {
-         console.log($scope.actividades[index].genteAnotada.push(usuario.username));
-        }
-      });
-    }).error(function(data, status, headers, config) {
-       console.log('Error, no hay comunicación con el servidor'); 
-    });
-  };
-
-  */
 
   // Usuario logueado se apunta a la actividad
   $scope.apuntarse = function(id) {
@@ -116,21 +101,6 @@ app.controller("NavCtrl", function($scope, $http, sharedId) {
     $scope.$on('idUpdated', function() {
       $scope.id = sharedId.get();
     });
-
-
-  /*
-  // Editar la actividad seleccionada
-  $scope.editar = function() {
-    var id = sharedId.get();
-    $http.put("/activity/edit/" + id)
-      .success(function() {
-        console.log('Se ha envidado el id de la actividad');
-      })
-      .error(function(data, status, headers, config) {
-        console.log('Error $http.put, status = ' + status);
-      });
-  };
-*/
 
 });
     

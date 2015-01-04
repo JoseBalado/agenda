@@ -44,9 +44,9 @@
           <a href="#" data-toggle="dropdown" class="dropdown-toggle">Opciones <b class="caret"></b></a>
           <ul class="dropdown-menu">
             <li><a href="/nueva-actividad">Nueva actividad</a></li>
-            <li ng-model="id"><a ng-href="/editar-actividad/{{id}}">Editar actividad</a></li>
+            <li ng-model="id" ng-class="id ? '' : 'disabled'"><a ng-href="/editar-actividad/{{id}}">Editar actividad</a></li>
             <li class="divider"></li>
-            <li><a href="/" ng-click="eliminar()">Eliminar actividad</a></li>
+            <li ng-class="id ? '' : 'disabled'"><a href="#myModal" data-toggle="modal">Eliminar actividad</a></li>
           </ul>
         </li>
       </ul>
@@ -55,9 +55,32 @@
       </ul>
      {% endif %}
     </div> <!-- id="navbarCollapse" -->
+
+
+    <!-- Modal HTML -->
+    <div id="myModal" class="modal fade">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title">Confirmación</h4>
+                </div>
+                <div class="modal-body">
+                    <p>¿Esta seguro de querer eliminar la actividad? No se podrá recuperar</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+                    <a class="btn btn-primary" href="/" ng-click="eliminar()">Eliminar</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- end of Modal HTML -->
+
   </nav>
   {% block content %}{% endblock %}
 </div>
+
 
 </body>
 </html>
