@@ -42,11 +42,13 @@
       <ul class="nav navbar-nav">
         <li class="dropdown">
           <a href="#" data-toggle="dropdown" class="dropdown-toggle">Opciones <b class="caret"></b></a>
-          <ul class="dropdown-menu">
+          <ul class="dropdown-menu" ng-model="id" ng-switch on="id">
             <li><a href="/nueva-actividad">Nueva actividad</a></li>
-            <li ng-model="id" ng-class="id ? '' : 'disabled'"><a ng-href="/editar-actividad/{{id}}">Editar actividad</a></li>
+            <li ng-switch-when='undefined' class="disabled"><a>Editar actividad</a></li>
+            <li ng-switch-default><a ng-href="/editar-actividad/{{id}}">Editar actividad</a></li>
             <li class="divider"></li>
-            <li ng-class="id ? '' : 'disabled'"><a href="#myModal" data-toggle="modal">Eliminar actividad</a></li>
+            <li ng-switch-when='undefined' class="disabled"><a>Eliminar actividad</a></li>
+            <li ng-switch-default><a href="#myModal" data-toggle="modal">Eliminar actividad</a></li>
           </ul>
         </li>
       </ul>
