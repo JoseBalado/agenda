@@ -11,8 +11,18 @@
   <script src="/js/jquery-2.1.1.min.js"></script>
   <script src="/js/bootstrap.min.js"></script>
   <script src="/js/angular.min.js"></script>
+  <script src="/js/ui-bootstrap-tpls-0.12.0.min.js"></script>
   <script src="/js/my-angular-app.js"></script>
+  <script src="js/angular-locale_es-es.js"></script>
+  <script src="/js/my-ui-bootstrap.js"></script>
   {% endblock %}
+
+  <style>
+  /* Original Bootstrap's CSS depends on empty href attributes to style cursors for several components (pagination, tabs etc.). But in AngularJS adding empty href attributes to link tags will cause unwanted route changes. This is why we need to remove empty href attributes from directive templates and as a result styling is not applied correctly. The remedy is simple, just add the following styling to your application: */
+
+  .nav, .pagination, .carousel, .panel-title a { cursor: pointer; }
+
+  </style>
 
   </head>
 <body ng-app="MyApp">
@@ -68,7 +78,7 @@
                     <h4 class="modal-title">Confirmación</h4>
                 </div>
                 <div class="modal-body">
-                    <p>¿Esta seguro de querer eliminar la actividad? No se podrá recuperar</p>
+                    <p>¿Está seguro de querer eliminar la actividad? No se podrá recuperar.</p>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>

@@ -1,4 +1,4 @@
-var app = angular.module("MyApp", []);
+var app = angular.module("MyApp", ['ui.bootstrap']);
 
 // Compartir datos entre los controladores del panel actividad y del panel navegación
 app.factory('sharedId', function($rootScope) {
