@@ -12,31 +12,36 @@
     <div class="col-md-3">
 
       <div class="form-group">
-        <input style="display:none" type="text" class="form-control" id="id" name="id" value="<%= acto.id %>">
-        <label for="inputName" class="control-label">Nombre de la actividad</label>
-        <input type="text" class="form-control" id="inputName" name="name" value="<%= acto.nombre %>" placeholder="Nombre actividad">
+        <input style="display: none" type="text" class="form-control" name="id" value="<%= acto.id %>">
+        <label for="nombre" class="control-label">Nombre de la actividad</label>
+        <input type="text" class="form-control" id="nombre" name="nombre" value="<%= acto.nombre %>" placeholder="Nombre actividad">
 
-        <label for="inputDay" class="control-label">Día de la actividad</label>
-        <input type="text" class="form-control" id="inputDay" name="day" value="<%= acto.día %>" placeholder="Lunes, Martes...">
-      
-        <label for="inputNumber" class="control-label">Número del día de la actividad</label>
-        <input type="number" class="form-control" id="inputNumber" name="daynumber" value="<%= acto.número %>" placeholder="1, 2, 3...">
+        <label for="fecha" class="control-label">Fecha de la actividad</label>
+        <div ng-controller="DatepickerDemoCtrl">
+          <p class="input-group">
+          <input type="text" class="form-control" datepicker-popup="{{format}}" ng-model="dt" is-open="opened" min-date="minDate" datepicker-options="dateOptions" date-disabled="disabled(date, mode)" ng-required="true" current-text="Hoy" clear-text="Borrar" close-text="Cerrar" id="fecha" name="fecha" ng-init="dt='<%= acto.fecha%>'" />
+              <span class="input-group-btn">
+                <button type="button" class="btn btn-default" ng-click="open($event)"><i class="glyphicon glyphicon-calendar"></i></button>
+              </span>
+          </p>
+        </div>
 
-        <label for="inputMonth" class="control-label">Mes de la actividad</label>
-        <input type="text" class="form-control" id="inputMonth" name="month" value="<%= acto.mes %>"  placeholder="Enero, Febrero...">
+        <label for="hora" class="control-label">Hora de la actividad</label>
+        <div ng-controller="TimepickerDemoCtrl">
+          <timepicker ng-model="mytime" ng-init="mytime=<%= acto.hora %>" hour-step="hstep" minute-step="mstep" show-meridian="ismeridian"></timepicker>
+          <a class="btn btn-info" ng-click="toggleMode();">12H / 24H</a>
+          <input style="display: none" type="text" class="form-control" id="hora" name="hora" value="{{ mytime }}" >
+        </div>
 
-        <label for="inputHour" class="control-label">Hora de la actividad</label>
-        <input type="text" class="form-control" id="inputHour" name="hour" value="<%= acto.hora %>"  placeholder="8:00">
-
-        <label for="inputPlace" class="control-label">Lugar</label>
-        <input type="text" class="form-control" id="inputPlace" name="place" value="<%= acto.lugar %>"  placeholder="Local">
+        <label for="lugar" class="control-label">Lugar</label>
+        <input type="text" class="form-control" id="lugar" name="lugar" value="<%= acto.lugar %>"  placeholder="Local">
       </div>
 
     </div>
 
     <div class="col-md-7">
-        <label for="textArea" class="control-label">Comentario</label>
-        <textarea class="form-control" id="textArea" name="text"><%= acto.texto %></textarea>
+        <label for="texto" class="control-label">Comentario</label>
+        <textarea class="form-control" id="texto" name="texto"><%= acto.texto %></textarea>
     </div>
 
     <div class="col-md-12">

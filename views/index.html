@@ -20,10 +20,8 @@
         <h3>Detalles de la actividad: {{ acto["nombre"] }}</h3>
         <div class="panel panel-default">
           <div class="panel-body" ng-show="acto">
-            <span> {{ acto["día"] }}</span>
-            <span> {{ acto["número"] }}</span>
-            <span> de {{ acto["mes"] }}</span>
-            <span> a las {{ acto["hora"] }}</span>
+            <div>Fecha: {{ acto["fecha"] }}</div>
+            <div>Hora: {{ acto["hora"] }}</div>
             <div>Lugar: {{ acto["lugar"] }}</div>
             <div>Comentario: {{ acto["texto"] }}</div>
             <div ng-show='acto["genteAnotada"]'>Gente anotada: {{ acto["genteAnotada"] }}</div>

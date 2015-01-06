@@ -3,9 +3,7 @@ var mongoose = require('mongoose'),
 
 var ActividadSchema = new Schema({
     nombre: String,
-    día: String,
-    número: Number,
-    mes: String,
+    fecha: String,
     hora: String,
     lugar: String,
     texto: String,

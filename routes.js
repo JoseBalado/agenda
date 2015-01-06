@@ -62,14 +62,13 @@ router.get('/nueva-actividad', function(req, res) {
 });
 
 router.post('/nueva-actividad', function(req, res) {
+  
   var acto = new Actividad({  
-    nombre: req.body.name,
-    día: req.body.day,
-    número: req.body.daynumber,
-    mes: req.body.month,
-    hora: req.body.hour,
-    lugar: req.body.place,
-    texto: req.body.text,
+    nombre: req.body.nombre,
+    fecha: req.body.fecha,
+    hora: req.body.hora,
+    lugar: req.body.lugar,
+    texto: req.body.texto,
     genteAnotada: []
   });
   
@@ -89,7 +88,7 @@ router.put('/user/addtoactivity/:id', function(req, res) {
   console.log(req.user.username);
   console.log(req.params.id);
   Actividad.update({_id: req.params.id, genteAnotada: {$nin: [req.user.username]}}, {$push: {genteAnotada: req.user.username}},
-    function() { res.end('true'); }
+    function() { res.end(); }
   );
 });
 
@@ -98,7 +97,7 @@ router.put('/user/removefromactivity/:id', function(req, res) {
   console.log(req.user.username);
   console.log(req.params.id);
   Actividad.update({_id: req.params.id, genteAnotada: {$in: [req.user.username]}}, {$pull: {genteAnotada: req.user.username}},
-    function() { res.end('true'); }
+    function() { res.end(); }
   );
 });
 
@@ -128,9 +127,7 @@ router.get('/editar-actividad/:id', function(req, res) {
         acto: {
           id: req.params.id,
           nombre: acto.nombre,
-          día: acto.día,
-          número: acto.número,
-          mes: acto.mes,
+          fecha: acto.fecha,
           hora: acto.hora,
           lugar: acto.lugar,
           texto: acto.texto
@@ -143,13 +140,11 @@ router.get('/editar-actividad/:id', function(req, res) {
 router.post('/editar-actividad', function(req, res) {
   console.log('post: /editar-actividad: ' + req.body.id);
   Actividad.findByIdAndUpdate(req.body.id, {
-    nombre: req.body.name,
-    día: req.body.day,
-    número: req.body.daynumber,
-    mes: req.body.month,
-    hora: req.body.hour,
-    lugar: req.body.place,
-    texto: req.body.text
+    nombre: req.body.nombre,
+    fecha: req.body.fecha,
+    hora: req.body.hora,
+    lugar: req.body.lugar,
+    texto: req.body.texto
   }, function(err) {
     if(err) {
       console.log(err);
@@ -160,6 +155,12 @@ router.post('/editar-actividad', function(req, res) {
   });
   res.redirect('/');
 
+});
+
+// editar-actividad asks for 'editar-actividad/js/angular-locale_es-es.js' 
+// so we rediret to it here to '/js/angular-locale_es-es.js'.
+router.get('/editar-actividad/js/angular-locale_es-es.js', function(req, res) {
+  res.redirect('/js/angular-locale_es-es.js');
 });
 
 module.exports = router;
