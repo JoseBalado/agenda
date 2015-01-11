@@ -21,10 +21,10 @@
         <div class="panel panel-default">
           <div class="panel-body" ng-show="acto">
             <div>Fecha: {{ acto["fecha"] }}</div>
-            <div>Hora: {{ acto["hora"] }}</div>
+            <div>Hora: {{ acto["hora"] | trimHourString | date: "hh:mm" }}</div>
             <div>Lugar: {{ acto["lugar"] }}</div>
             <div>Comentario: {{ acto["texto"] }}</div>
-            <div ng-show='acto["genteAnotada"]'>Gente anotada: {{ acto["genteAnotada"] }}</div>
+            <div ng-show='acto["genteAnotada"]'>Gente anotada: {{ acto["genteAnotada"].join(', ') }}</div>
           </div>
         </div>
 

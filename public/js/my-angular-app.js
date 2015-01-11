@@ -103,4 +103,20 @@ app.controller("NavCtrl", function($scope, $http, sharedId) {
     });
 
 });
-    
+
+
+// Filters
+
+// trimHourString removes one double quote at the end
+// and another at the start so the filter date can
+// get the hour and minutes.
+// The format recived it this: ""2015-01-10T02:25:28.000Z""
+// and it is not suitable for the date filter.
+app.filter("trimHourString", function() {
+  return function(input) {
+    input = input || ""; // Without this line input will never
+                        // receive any value
+    console.log(input);
+    return input.slice(1,-1);
+  };
+});
