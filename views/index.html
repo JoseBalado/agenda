@@ -6,25 +6,46 @@
 
     <div class="row">
       <div class="col-md-3">
-      
-          <h3>Actividades</h3> 
+        <div class="panel panel-default">
+          <div class="panel-heading">Actividades</div> 
+          <div class="panel-body"> 
           <ul class="list-group">
             <li class="list-group-item" ng-repeat="actividad in actividades">
             <a href="#" ng-click="show(actividad['_id'])">{{ actividad.nombre }}</a>
             </li>
           </ul>
-
+          </div>
+        </div>
       </div> <!-- end of class="col-md-3" -->
 
       <div class="col-md-9">
-        <h3>Detalles de la actividad: {{ acto["nombre"] }}</h3>
         <div class="panel panel-default">
-          <div class="panel-body" ng-show="acto">
-            <div>Fecha: {{ acto["fecha"] }}</div>
-            <div>Hora: {{ acto["hora"] | trimHourString | date: "hh:mm" }}</div>
-            <div>Lugar: {{ acto["lugar"] }}</div>
-            <div>Comentario: {{ acto["texto"] }}</div>
-            <div ng-show='acto["genteAnotada"]'>Gente anotada: {{ acto["genteAnotada"].join(', ') }}</div>
+          <div class="panel-heading">Detalles de la actividad: {{ acto["nombre"] }}</div>
+          <div class="panel-body" ng-show="acto"> 
+            <table class="table table-striped">
+              <tbody>
+                <tr>
+                 <td>Fecha:</td>
+                 <td>{{ acto["fecha"] }}</td>
+                </tr>
+                <tr>
+                  <td>Hora:</td>
+                  <td>{{ acto["hora"] | trimHourString | date: "h:mm" }}</td>
+                </tr>
+                <tr>
+                  <td>Lugar:</td>
+                  <td>{{ acto["lugar"] }}</td>
+                </tr>
+                <tr>
+                  <td>Comentario:</td>
+                  <td>{{ acto["texto"] }}</td>
+                </tr>
+                <tr>
+                  <td>Gente anotada:</td>
+                  <td>{{ acto["genteAnotada"].join(', ') }}</td>
+                </tr>
+              </tbody>
+            </table>
           </div>
         </div>
 
