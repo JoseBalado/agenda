@@ -20,10 +20,13 @@ app.set('views', path.join(__dirname, 'views'));
 
 // Swig will cache templates for you, but you can disable
 // that and use Express's caching instead, if you like:
-app.set('view cache', false);
-// To disable Swig's cache, do the following:
-// Also: varControls: ['<%=', '%>'] so it does not conflict with AngularJS {{ }}.
-swig.setDefaults({ varControls: ['<%=', '%>'], cache: false });
+if (app.get('env') === 'development') { 
+  // To disable Swig's cache, do the following:
+  app.set('view cache', false);
+  // Also: varControls: ['<%=', '%>'] 
+  // so it does not conflict with AngularJS {{ }}.
+  swig.setDefaults({ varControls: ['<%=', '%>'], cache: false });
+}
 // NOTE: You should always cache templates in a production environment.
 // Don't leave both of these to `fals
 
