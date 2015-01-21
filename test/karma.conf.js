@@ -1,26 +1,31 @@
 // Karma configuration
-// Generated on Sat Jan 17 2015 01:19:36 GMT+0100 (CET)
+// Generated on Sun Jan 18 2015 00:32:02 GMT+0100 (CET)
 
 module.exports = function(config) {
   config.set({
 
     // base path that will be used to resolve all patterns (eg. files, exclude)
-    basePath: '',
+    basePath: '../',
 
 
     // frameworks to use
     // available frameworks: https://npmjs.org/browse/keyword/karma-adapter
-    frameworks: ['mocha', 'requirejs', 'chai'],
+    frameworks: ['mocha', 'chai'],
 
+    client: {
+      mocha: {
+        reporter: 'html' // change Karma's debug.html to the mocha web reporter
+      }
+    },
 
     // list of files / patterns to load in the browser
     files: [
-      'tests/test-main.js',
       'public/js/angular.min.js',
+      'node_modules/angular-mocks/angular-mocks.js',
+      'public/js/ui-bootstrap-tpls-0.12.0.min.js',
       'public/js/my-angular-app.js',
       'public/js/my-ui-bootstrap.js',
-      'node_modules/angular-mocks/angular-mocks.js',
-      {pattern: 'tests/*spec.js', included: false}
+      'test/unit/filterTest.js'
     ],
 
 
@@ -60,7 +65,7 @@ module.exports = function(config) {
 
     // start these browsers
     // available browser launchers: https://npmjs.org/browse/keyword/karma-launcher
-    browsers: ['Firefox'],
+    browsers: ['Chrome'],
 
 
     // Continuous Integration mode
