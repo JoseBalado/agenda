@@ -26,9 +26,11 @@ if (app.get('env') === 'development') {
   // Also: varControls: ['<%=', '%>'] 
   // so it does not conflict with AngularJS {{ }}.
   swig.setDefaults({ varControls: ['<%=', '%>'], cache: false });
+} else {
+  swig.setDefaults({ varControls: ['<%=', '%>'] });
 }
 // NOTE: You should always cache templates in a production environment.
-// Don't leave both of these to `fals
+// Don't leave both of these to false.
 
 // uncomment after placing your favicon in /public
 //app.use(favicon(__dirname + '/public/favicon.ico'));
