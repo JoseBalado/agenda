@@ -13,6 +13,9 @@ var LocalStrategy = require('passport-local').Strategy;
 
 var app = express();
 
+var databaseUrl = process.env.MONGOLAB_URI; // Use a different database
+                                            // when deploying on Heroku
+
 // view engine setup
 app.engine('html', swig.renderFile);
 app.set('view engine', 'html');
@@ -54,11 +57,21 @@ passport.serializeUser(Account.serializeUser());
 passport.deserializeUser(Account.deserializeUser());
 
 // Connect mongoose
-mongoose.connect('mongodb://localhost/agenda', function(err) {
-  if (err) {
-    console.log('Could not connect to mongodb on localhost. Ensure that you have mongodb running on localhost and mongodb accepts connections on standard ports!');
-  }
-});
+
+
+if(databaseUrl) {
+  mongoose.connect(databaseUrl, function(err) {
+    if (err) {
+      console.log('Could not connect to mongodb on localhost. Ensure that you have mongodb running on localhost and mongodb accepts connections on standard ports!');
+    }
+  });
+} else {
+  mongoose.connect('mongodb://localhost/agenda', function(err) {
+    if (err) {
+      console.log('Could not connect to mongodb on localhost. Ensure that you have mongodb running on localhost and mongodb accepts connections on standard ports!');
+    }
+  });
+}
 
 // Catch when the Node process is ending and close the Mongoose connection
 process.on('SIGINT', function() {

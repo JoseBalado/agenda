@@ -26,7 +26,7 @@ app.controller("MyCtrl", function($scope, $http, sharedId) {
     })
     .error(function(data, status, headers, config) {
       $scope.actividades = [
-        {"nombre": "Error, no hay comunicación con el servidor"}
+        {"nombre": "conectando con el servidor..."}
       ]
     });
   };
