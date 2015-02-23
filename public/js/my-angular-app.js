@@ -67,7 +67,7 @@ app.controller("MyCtrl", function($scope, $http, sharedId) {
 
   // Usuario logueado se borra de la actividad
   $scope.borrarse = function(id) {
-    $http.put("/user/removefromactivity/" + id)
+    $http.delete("/user/removefromactivity/" + id)
       .success(function() {
         console.log('Te has borrado de la actividad');
         fetchData();

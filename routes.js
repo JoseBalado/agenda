@@ -93,7 +93,7 @@ router.put('/user/addtoactivity/:id', function(req, res) {
 });
 
 // Remove user from activity
-router.put('/user/removefromactivity/:id', function(req, res) {
+router.delete('/user/removefromactivity/:id', function(req, res) {
   console.log(req.user.username);
   console.log(req.params.id);
   Actividad.update({_id: req.params.id, genteAnotada: {$in: [req.user.username]}}, {$pull: {genteAnotada: req.user.username}},
